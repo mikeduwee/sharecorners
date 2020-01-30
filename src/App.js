@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './img/logo.svg';
 import './App.css';
 import Map from './Map'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 function App() {
 
