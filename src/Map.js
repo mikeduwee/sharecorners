@@ -14,12 +14,12 @@ function Map() {
 
   return (
     <MapGL
-    {...viewport}
-    width= "100vw"
-    height= "80vh"
-    mapStyle="mapbox://styles/mapbox/dark-v9"
-    onViewportChange={setViewport}
-    mapboxApiAccessToken={MAPBOX_TOKEN}
+      {...viewport}
+      width="100vw"
+      height="75vh"
+      mapStyle="mapbox://styles/mapbox/dark-v9"
+      onViewportChange={setViewport}
+      mapboxApiAccessToken={MAPBOX_TOKEN}
     />
   );
 }

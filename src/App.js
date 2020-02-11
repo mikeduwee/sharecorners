@@ -10,11 +10,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Foodie or what?
-          </p>
-          <Map></Map>
+        <p>Foodie or what?</p>
       </header>
+      <Map className="Map"></Map>
+
     </div>
   );
 }
