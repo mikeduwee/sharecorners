@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
-import MapGL, {Popup, Marker} from 'react-map-gl';
+import MapGL, {Popup} from 'react-map-gl';
+
+import Pins from './pinshooks';
+import CityInfo from './city-info';
+
+
+import CORNERS from '../.data/corners.json';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoibWlrZWR1d2VlIiwiYSI6ImNqbm00dndpZzA0NDczcm51b3Y5aG5uOXcifQ.N-ha9iC9A_qnLME7FtvSAg'; // Set your mapbox token here
 
+
 function Map() {
-  const [visiblePopup, setPopup] = useState(true)
+  const [popupInfo, setPopupInfo] = useState();
   const [viewport, setViewport] = useState({
     latitude: 40.4,
     longitude: -3.7,
@@ -13,6 +20,7 @@ function Map() {
     pitch: 0,
     showPopup: true
   });
+
   return (
     <MapGL
       {...viewport}
@@ -23,32 +31,22 @@ function Map() {
       mapboxApiAccessToken={MAPBOX_TOKEN}
     >
       {
-      [visiblePopup && <Popup
-          latitude={40.4}
-          longitude={-3.7}
-          closeButton={true}
-          closeOnClick={true}
-          onClose={() => setPopup(false)}
-          anchor="top" >
-          <div>Popup1</div>
-        </Popup>,
-        <Popup
-          latitude={41.4}
-          longitude={-3.9}
-          closeButton={false}
-          closeOnClick={false}
-          anchor="top" >
-          <div>Popup2</div>
-        </Popup>,
-        <Marker 
-          latitude={39.78}
-          longitude={-3.4} 
-          offsetLeft={-20} 
-          offsetTop={-10}
-          draggable={true}>
-          <div>Marker</div>
-        </Marker>
-      
+      [
+        <Pins data={CORNERS}
+          onClick={(corner => setPopupInfo(corner))}
+        />,
+        popupInfo && (
+          <Popup
+            tipSize={5}
+            anchor="top"
+            longitude={popupInfo.longitude}
+            latitude={popupInfo.latitude}
+            closeOnClick={false}
+            onClose={() =>setPopupInfo(null)}
+          >
+            <CityInfo info={popupInfo} />
+          </Popup>
+        )
       ]}
     </MapGL>
   );
