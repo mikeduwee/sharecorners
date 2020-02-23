@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import MapGL, {Popup} from 'react-map-gl';
 
-import Pins from './pins';
+import Pins from './pinshooks';
 import CityInfo from './city-info';
 
 
