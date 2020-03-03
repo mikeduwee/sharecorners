@@ -12,8 +12,8 @@ const SIZE = 20;
 export default function Pins(props) {
   const {data, onClick} = props;
 
-  return data.map((city, index) => (
-    <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
+  return data.map((corner, index) => (
+    <Marker key={`marker-${index}`} longitude={corner.location.Longitud} latitude={corner.location.Latitud}>
       <svg
         height={SIZE}
         viewBox="0 0 24 24"
@@ -23,7 +23,7 @@ export default function Pins(props) {
           stroke: 'none',
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
         }}
-      onClick={() => onClick(city)}
+      onClick={() => onClick(corner)}
       >
         <path d={ICON} />
       </svg>
